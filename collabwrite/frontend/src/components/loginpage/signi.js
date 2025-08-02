@@ -1,0 +1,104 @@
+import React, { useState } from 'react';
+import './loginpage.css';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+function LoginPage() {
+
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    });
+
+    const [loginError, setLoginError] = useState("");
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUser((prevUser) => ({ ...prevUser, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoginError(""); // Reset error message on new submission
+        try {
+            const response = await sendRequest();
+            console.log("Response:", response);
+            if (response.status === "ok") {
+                console.log("Login successful");
+                navigate('/homepage');
+            } else {
+                console.error("Login failed");
+                setLoginError("Invalid email or password");
+            }
+        } catch (err) {
+            console.error("Error during login:", err);
+            setLoginError("Server error. Please try again.");
+        }
+    };
+
+    const sendRequest = async () => {
+        return await axios.post("http://localhost:5000/login", {
+            email: user.email,
+            password: user.password,
+        }).then((res) => res.data);
+    }
+
+
+    return (
+
+
+
+        <div className="login-container">
+
+            <div className="login-left">
+                <div className="content-left">
+                    <div className="logo"><img src="\signin\logo.png" alt="logo" /></div>
+                    <h1>Write, edit, and create together</h1>
+                    <p>where ideas flow and collaboration thrives. Join the space where teamwork brings words to life</p>
+                    <div><img src="\signin\amico.png" /></div>
+                    <h2>Create an account to join our space</h2>
+                </div>
+            </div>
+
+            <div className="login-right">
+                <form className="login-box" onSubmit={handleSubmit}>
+                    <div className="avatar">👤</div>
+                    <h2>Hello Welcome</h2>
+
+                    {/* Display error message */}
+                    {loginError && <p className="error-message">{loginError}</p>}
+
+                    <label>Email :</label>
+                    <input type="email" name="email" value={user.email}
+                        onChange={handleInputChange} placeholder="Username" required />
+
+                    <label>Password :</label>
+                    <div className="password-box">
+                        <input type="password" name="password" value={user.password} onChange={handleInputChange} placeholder="Password" required />
+                    </div>
+
+                    <Link to='/forgotpasswordpage' className="forgot-password">Forgot Password?</Link>
+
+                    <button type="submit">Sign in</button>
+
+                    <div className="divider"><span>or</span></div>
+
+                    <div className="social-login">
+                        <button className="google">G</button>
+                        <button className="facebook">f</button>
+                        <button className="linkedin">in</button>
+                    </div>
+
+                    <p className="signup-text">Don't Have an account? <Link to='/signuppage'>Sign up</Link></p>
+                </form>
+            </div>
+
+        </div>
+
+
+        
+    )
+}
+
+export default LoginPage

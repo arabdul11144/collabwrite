@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f3f3f3;
+}
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 80px;
+  background: linear-gradient(to right, #f5f5ff, #ffffff);
+  position: relative;
+}
+.hero-text {
+  max-width: 450px;
+}
+.hero-text h1 {
+  font-size: 32px;
+  color: #333;
+}
+.hero-text p {
+  color: #666;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+.features {
+  margin-top: 20px;
+  color: #555;
+}
+.features li {
+  margin-bottom: 8px;
+}
+.cta-button {
+  margin-top: 20px;
+  background-color: #7c4dff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.hero-image {
+  width: 100%;
+}
+.hero-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.top-nav {
+  padding: 20px 60px;
+  background-color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-size: 22px;
+  font-weight: bold
+
+}
+.top-nav a {
+  text-decoration: none;
+  color: #ffffff;
+  margin-left: 20px;
+}
+.brand {
+  font-size: 54px;
+  font-weight: bold;
+  color: #7c4dff;
+}
+
+
+.logo{
+  width: 50px;
+  height: auto; 
+}
